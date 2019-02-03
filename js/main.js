@@ -13,28 +13,26 @@ class Sounds extends Phaser.State {
     const version = 1;
 
     // Images
-    const images = [
-      "particle-blue",
-      "particle-blue-light",
-      "particle-green",
-      "squid",
-    ];
-    for (const name of images) {
-      this.load.image(name, `assets/images/${name}.png?v=${version}`);
+    for (const particleName of PARTICLE_NAMES) {
+      this.load.image(particleName, `assets/images/${particleName}.png?v=${version}`);
     }
 
     // Audio
-    this.load.audio("hit", "assets/audio/hit.wav?v=" + version);
-    this.load.audio("switch", "assets/audio/switch.wav?v=" + version);
-
-    // Scripts
-    this.load.script("constants", "js/constants.js");
+    for (const soundName of SOUND_NAMES) {
+      this.load.audio(soundName, `assets/audio/${soundName}.wav?v=${version}`);
+    }
   }
 
   create() {
-    // Sound
-    this.scoreSound = this.game.add.audio("hit");
-    this.switchSound = this.game.add.audio("switch");
+    // Sounds
+    /** @type {{ [key: string]: Phaser.Sound }} */
+    this.sounds = {};
+    for (const soundName of SOUND_NAMES) {
+      this.sounds[soundName] = this.game.add.audio(soundName);
+      this.sounds[soundName].loopFull(0);
+    }
+    this.sounds["base"] = this.sounds["solar-solar-bed-1"];
+    this.sounds["base"].volume = 0.5;
 
     // Particles
     this.particleEmitter = this.game.add.emitter(
@@ -58,12 +56,14 @@ class Sounds extends Phaser.State {
     this.particleEmitter.on = true;
     this.particleEmitter.setAllChildren("inputEnabled", true);
     this.particleEmitter.onChildInputDown.add((particle, pointer) => {
-      console.log(particle.key);
-      console.log("Down");
+      const soundName = PARTICLE_TO_SOUND_MAP[particle.key];
+      this.sounds.base.volume = 0;
+      this.sounds[soundName].volume = 0.5;
     });
     this.particleEmitter.onChildInputUp.add((particle, pointer) => {
-      console.log(particle.key);
-      console.log("Up");
+      const soundName = PARTICLE_TO_SOUND_MAP[particle.key];
+      this.sounds.base.volume = 0.5;
+      this.sounds[soundName].volume = 0;
     });
   }
 

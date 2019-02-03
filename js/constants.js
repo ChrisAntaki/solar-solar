@@ -1,9 +1,9 @@
 // Constants
 const SOUND_NAMES = [
-  "track-0",
-  "track-1",
-  "track-2",
-  "track-3",
+  "solar-solar-bed-1",
+  "solar-solar-bed-1.1",
+  "solar-solar-bed-1.2",
+  "solar-solar-bed-1.3",
 ];
 const PARTICLE_NAMES = [
   "particle-blue",
@@ -12,7 +12,7 @@ const PARTICLE_NAMES = [
 ];
 const PARTICLE_DURATION = 600;
 const PARTICLE_TO_SOUND_MAP = {
-  "particle-blue": "track-1",
-  "particle-blue-light": "track-2",
-  "particle-green": "track-3",
+  "particle-blue": "solar-solar-bed-1.1",
+  "particle-blue-light": "solar-solar-bed-1.2",
+  "particle-green": "solar-solar-bed-1.3",
 }
