@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+    />
+    <title>Sounds</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+    />
+    <script src="./js/lib/phaser.min.js"></script>
+    <script src="./js/lib/phaser.box2d.min.js"></script>
+    <style>
+      html,
+      body {
+        height: 100%;
+        overflow: hidden;
+      }
+
+      body {
+        background: linear-gradient(#15253d, #131c29);
+        margin: 0px;
+        padding: 0px;
+      }
+
+      canvas {
+        background-color: rgba(0, 0, 0, 0.333);
+        box-sizing: border-box;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- include the main game file -->
+    <script>
+      document.write(
+        "<script type='text/javascript' src='js/main.js?v=" +
+          Date.now() +
+          "'><\/script>"
+      );
+    </script>
+  </body>
+</html>
