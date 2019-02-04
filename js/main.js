@@ -65,6 +65,13 @@ class Sounds extends Phaser.State {
       this.sounds.base.volume = 0.5;
       this.sounds[soundName].volume = 0;
     });
+
+    // Unpause audio
+    this.input.onUp.add(() => {
+      if (this.sound.usingWebAudio && this.sound.context.state === 'suspended') {
+        this.sound.context.resume();
+      }
+    });
   }
 
   update() {
